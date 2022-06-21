@@ -1,12 +1,13 @@
 import { BASE_URL, API_KEY,IMG_URL_W500 } from './Api.js'
 
 const row = document.querySelector('#row-detalhe')
-
+const divLink = document.querySelector('#div-link-filme')
+let idFilme = ''
 window.onload = async() => {
     const url_string = window.location.href;
     const url = new URL(url_string);
     const id = +url.searchParams.get("id");
-
+    idFilme = id;
     buscarFilme(id)
 }
 
@@ -42,6 +43,12 @@ const buscarFilme = async(id) => {
 
     const divConteudo = document.createElement('div')
     divConteudo.setAttribute('class', 'col-sm-12 col-md-7')
+
+    const saibaMais = document.createElement('a')
+    saibaMais.setAttribute('href', `https://www.themoviedb.org/movie/${idFilme}`)
+    saibaMais.setAttribute('class', 'btn btn-warning')
+    saibaMais.innerHTML='Saiba mais'
+    divLink.appendChild(saibaMais)
 
     divImg.appendChild(img)
 
